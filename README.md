@@ -28,6 +28,21 @@ Use branches in this repository for team work. Pull requests from forks can
 require separate Vercel approval. Keep credentials and internal planning
 documents outside this repository.
 
+## Visitor analytics
+
+Production builds include Vercel Web Analytics on every route. It is enabled
+in the existing `hsil-clean` project. View visitors, page views, referrers,
+countries and devices in the project's **Analytics** tab; select **Production**
+to exclude preview traffic.
+
+Query parameters and fragments are removed before page-view events are sent.
+Local development does not load analytics. This setup sends no custom events
+and uses no paid analytics add-ons. Hobby currently includes 50,000 events per
+month across the team and a one-month reporting window; check
+[Vercel's current limits](https://vercel.com/docs/analytics/limits-and-pricing)
+before planning a campaign. Data starts when tracking is deployed; it does not
+reconstruct past visits.
+
 ## Provenance
 
 Website source snapshot: `bd6e8e7a8ce5b72893dd903025b5cb951160d607`.
