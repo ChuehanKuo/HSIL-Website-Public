@@ -39,9 +39,9 @@ const DESCRIPTION_2026 =
 export const ROUTES: Readonly<Record<"/" | "/2026", RouteMetadata>> = {
   "/": {
     lang: "zh-Hant",
-    title: "HSIL Hackathon — Taiwan Hub | 全球健康創新黑客松",
+    title: "2027 全球健康創新黑客松｜HSIL Hackathon Taiwan Hub",
     description:
-      "哈佛 Health Systems Innovation Lab 的全球健康創新黑客松台灣站，由臺灣大學公共衛生學院健康經濟與人工智慧實驗室承辦。2027 詳情將公布；2026 紀錄保留於本站。",
+      "HSIL Hackathon 2027 台灣站將於 2027 年 4 月 16–17 日舉行，主題為「運用人工智慧打造高價值健康體系」。參賽免費，預計 2026 年 12 月 1 日開放申請；報名與活動詳情將陸續公布。",
     url: `${SITE_URL}/`,
     image: OG_IMAGE,
     jsonLd: {

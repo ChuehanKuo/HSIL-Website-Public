@@ -60,7 +60,13 @@ const Navbar = ({ variant = "edition-2027" }: NavbarProps) => {
   // Cross-edition link: archive → current 2027 edition; 2027 → 2026 archive.
   const crossEdition = isArchive
     ? { label: "Current edition", to: "/" }
-    : { label: "2026 Archive", to: "/2026" };
+    : { label: "回顧 2026 活動", to: "/2026" };
+  const crossEditionClass = isArchive
+    ? "ml-1.5 inline-flex items-center gap-1 whitespace-nowrap text-[13px] font-semibold px-3.5 py-2 rounded-full text-primary border border-primary/25 hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
+    : "ml-1.5 inline-flex min-h-11 items-center whitespace-nowrap px-3 py-2 text-sm font-medium text-foreground/70 underline decoration-foreground/30 underline-offset-4 transition-colors hover:text-primary hover:decoration-primary motion-reduce:transition-none";
+  const navTransition = isArchive
+    ? "transition-all duration-500"
+    : "transition-colors duration-300 motion-reduce:transition-none";
   // Logos + seven anchors + pill measure ~1180px, so the archive keeps the
   // menu button until xl; the 2027 bar (one link) fits from lg.
   const inlineLinks = isArchive ? "hidden xl:flex" : "hidden lg:flex";
@@ -68,7 +74,7 @@ const Navbar = ({ variant = "edition-2027" }: NavbarProps) => {
 
   return (
     // English labels on both routes; "/" is a zh-Hant document.
-    <nav lang="en" className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${navBg}`}>
+    <nav lang={isArchive ? "en" : "zh-Hant"} className={`fixed top-0 left-0 right-0 z-50 ${navTransition} ${navBg}`}>
       <div className="container mx-auto flex items-center justify-between py-3 md:py-4 px-4 sm:px-6">
         <div className="flex min-w-0 items-center gap-2 md:gap-4 mr-3 lg:mr-0 lg:shrink-0">
           <Link to="/" className="flex min-w-0 items-center gap-2 md:gap-4">
@@ -108,7 +114,7 @@ const Navbar = ({ variant = "edition-2027" }: NavbarProps) => {
           ))}
           <Link
             to={crossEdition.to}
-            className="ml-1.5 inline-flex items-center gap-1 whitespace-nowrap text-[13px] font-semibold px-3.5 py-2 rounded-full text-primary border border-primary/25 hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
+            className={crossEditionClass}
           >
             {crossEdition.label}
           </Link>
@@ -118,7 +124,7 @@ const Navbar = ({ variant = "edition-2027" }: NavbarProps) => {
           ref={toggleRef}
           className={`${menuOnly} shrink-0 p-2 rounded-lg hover:bg-foreground/5 transition-colors`}
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
+          aria-label={isArchive ? "Toggle menu" : mobileOpen ? "關閉導覽" : "開啟導覽"}
           aria-expanded={mobileOpen}
           aria-controls="mobile-navigation"
         >

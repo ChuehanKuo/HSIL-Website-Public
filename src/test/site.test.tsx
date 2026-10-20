@@ -20,7 +20,16 @@ describe("2027 edition (root)", () => {
   it("renders the 2027 front door and links to the 2026 archive", () => {
     render(<App />);
     expect(screen.getByRole("main")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 1 })).toHaveAccessibleName(/全球健康創新黑客松/);
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("2027 全球健康創新黑客松");
+    expect(screen.queryByText("2027.04.16")).not.toBeInTheDocument();
+    expect(screen.queryByText("運用人工智慧打造高價值健康體系")).not.toBeInTheDocument();
+    expect(screen.queryByText("Building High-Value Health Systems: Leveraging Artificial Intelligence")).not.toBeInTheDocument();
+    expect(screen.queryByText(/參賽免費 · 預計 2026\.12\.01 開放申請/)).not.toBeInTheDocument();
+    expect(screen.getByText("報名與活動詳情將陸續公布")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "合作與導師洽詢" })).toHaveAttribute(
+      "href",
+      expect.stringMatching(/^mailto:hsilhackathon\.taiwan@gmail\.com\?/),
+    );
     expect(screen.getAllByText(/2027/).length).toBeGreaterThan(0);
 
     // A prominent path into the archive exists.
@@ -122,7 +131,9 @@ describe("scroll position", () => {
     // First load: the browser owns the initial position.
     expect(scrollTo).not.toHaveBeenCalledWith(toTop);
 
-    fireEvent.click(within(screen.getByRole("navigation")).getByRole("link", { name: "2026 Archive" }));
+    const toArchive = screen.getAllByRole("link").find((link) => link.getAttribute("href") === "/2026");
+    expect(toArchive).toBeDefined();
+    fireEvent.click(toArchive!);
     const current = await screen.findByRole("link", { name: "Current edition" });
     expect(window.location.pathname).toBe("/2026");
     expect(scrollTo).toHaveBeenCalledWith(toTop);
