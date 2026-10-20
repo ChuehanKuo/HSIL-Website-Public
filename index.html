@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Page metadata lives in src/content/routes.ts. The build rewrites the title,
+         description, canonical, og/twitter and JSON-LD tags below for each route
+         (build/route-html.ts) and RouteMeta updates them in the browser. The values here
+         are the "/" route's; src/test/deploy.test.ts fails if they drift from routes.ts. -->
+    <title>HSIL Hackathon — Taiwan Hub | 全球健康創新黑客松</title>
+    <meta name="description" content="哈佛 Health Systems Innovation Lab 的全球健康創新黑客松台灣站，由臺灣大學公共衛生學院健康經濟與人工智慧實驗室承辦。2027 詳情將公布；2026 紀錄保留於本站。" />
+    <meta name="author" content="HSIL Hackathon Taiwan Hub" />
+    <meta name="revision" content="2026-10-05" />
+    <meta name="keywords" content="HSIL, Hackathon, 黑客松, 哈佛, Harvard, 台灣, NTU, 健康系統, AI, 公共衛生" />
+    <link rel="canonical" href="https://www.hsilhackathontaiwan.com/" />
+
+    <!-- Latin fonts are self-hosted via @fontsource (src/main.tsx). Noto Sans/Serif TC for
+         Chinese comes from Google: preloaded here, applied by src/main.tsx so the stylesheet
+         never blocks first paint. Weights are only those the site renders (Sans 400–600 as one
+         variable range, Serif 400); add one here before using it. build/noto-subset.ts appends
+         &text= with every character in the source, so Google serves one small file per family. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      id="noto-tc"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400..600&family=Noto+Serif+TC:wght@400&display=swap"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.hsilhackathontaiwan.com/" />
+    <meta property="og:title" content="HSIL Hackathon — Taiwan Hub | 全球健康創新黑客松" />
+    <meta property="og:description" content="哈佛 Health Systems Innovation Lab 的全球健康創新黑客松台灣站，由臺灣大學公共衛生學院健康經濟與人工智慧實驗室承辦。2027 詳情將公布；2026 紀錄保留於本站。" />
+    <meta property="og:image" content="https://www.hsilhackathontaiwan.com/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="HSIL Hackathon — Taiwan Hub | 全球健康創新黑客松" />
+    <meta name="twitter:description" content="哈佛 Health Systems Innovation Lab 的全球健康創新黑客松台灣站，由臺灣大學公共衛生學院健康經濟與人工智慧實驗室承辦。2027 詳情將公布；2026 紀錄保留於本站。" />
+    <meta name="twitter:image" content="https://www.hsilhackathontaiwan.com/og.jpg" />
+
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"HSIL Hackathon Taiwan Hub","url":"https://www.hsilhackathontaiwan.com/","email":"hsilhackathon.taiwan@gmail.com","sameAs":["https://www.instagram.com/hsilhackathon.taiwan/"]}</script>
+  </head>
+
+  <body>
+    <noscript>
+      <p style="padding: 2rem 1.5rem; text-align: center">
+        <span lang="zh-Hant">全球健康創新黑客松台灣站：本網站需要啟用 JavaScript。</span>
+        <span lang="en">HSIL Hackathon Taiwan Hub: this site needs JavaScript.</span>
+        <a href="mailto:hsilhackathon.taiwan@gmail.com">hsilhackathon.taiwan@gmail.com</a>
+      </p>
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

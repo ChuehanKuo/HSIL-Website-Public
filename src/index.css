@@ -1,0 +1,186 @@
+/* Noto Sans/Serif TC (Chinese) is loaded by index.html + src/main.tsx, not @import:
+   an @import here chained Google's stylesheet in front of first paint. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  overflow-x: hidden;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 26% 14%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 26% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 26% 14%;
+
+    --primary: 352 72% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 170 85% 32%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 14% 96%;
+    /* 42% (was 47%): clears WCAG AA 4.5:1 on the stone (5.0) and ivory (5.3) tones. */
+    --muted-foreground: 215 16% 42%;
+
+    --accent: 37 90% 44%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 214 32% 91%;
+    --ring: 352 72% 40%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  /* Silences motion's dev-only useScroll warning about a static scroll container;
+     measured: no layout or hero-parallax change. */
+  html {
+    position: relative;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Lenis (html.lenis, desktop /2026) animates the scroll itself; native smoothing
+     would fight it. !important: ScrollTrigger's refresh writes scroll-behavior inline. */
+  html.lenis {
+    scroll-behavior: auto !important;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+  }
+
+  /* Crimson is 2.8:1 on the dark tone; the CTA gold is 12.8:1. */
+  [data-tone="dark"] :focus-visible,
+  footer :focus-visible {
+    outline-color: hsl(37 90% 75%);
+  }
+}
+
+@layer utilities {
+  .gradient-hero {
+    background:
+      radial-gradient(ellipse 75% 55% at 75% 15%, hsl(352 68% 32% / 0.55) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 50% at 15% 85%, hsl(170 70% 22% / 0.28) 0%, transparent 60%),
+      linear-gradient(180deg, hsl(220 45% 5%) 0%, hsl(220 42% 8%) 100%);
+  }
+
+  .gradient-cta {
+    background: linear-gradient(135deg, hsl(170 90% 14%) 0%, hsl(170 85% 28%) 50%, hsl(162 78% 22%) 100%);
+  }
+
+  .text-gradient-crimson {
+    background: linear-gradient(135deg, hsl(352 72% 35%), hsl(352 72% 50%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-teal {
+    background: linear-gradient(135deg, hsl(170 85% 32%), hsl(162 78% 25%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-card {
+    background: hsl(0 0% 100% / 0.07);
+    backdrop-filter: blur(16px);
+    border: 1px solid hsl(0 0% 100% / 0.12);
+  }
+
+  .glass-card-light {
+    background: hsl(0 0% 100% / 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(0 0% 100% / 0.8);
+    box-shadow: 0 8px 32px hsl(0 0% 0% / 0.06);
+  }
+
+  .card-elevated {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 1px 3px hsl(0 0% 0% / 0.04), 0 4px 16px hsl(0 0% 0% / 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-elevated:hover {
+    box-shadow: 0 4px 12px hsl(0 0% 0% / 0.08), 0 8px 32px hsl(0 0% 0% / 0.08);
+    transform: translateY(-3px);
+  }
+
+  .section-dark {
+    background: linear-gradient(180deg, hsl(220 26% 10%) 0%, hsl(220 20% 14%) 100%);
+  }
+
+  .section-subtle {
+    background: linear-gradient(180deg, hsl(220 14% 97%) 0%, hsl(220 14% 95%) 100%);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px hsl(37 90% 44% / 0.4), 0 0 60px hsl(37 90% 44% / 0.15);
+  }
+
+  .hero-grid {
+    background-image:
+      linear-gradient(hsl(0 0% 100% / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(0 0% 100% / 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+.animate-marquee-reverse {
+  animation: marquee-reverse 40s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-reverse {
+    animation: none;
+  }
+}

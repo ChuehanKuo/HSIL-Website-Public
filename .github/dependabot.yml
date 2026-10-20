@@ -1,0 +1,29 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '09:00'
+      timezone: Asia/Taipei
+    open-pull-requests-limit: 5
+    # The runtime is pinned to Node 24 (.nvmrc, package.json engines); a newer
+    # @types/node major would type APIs that runtime doesn't have.
+    ignore:
+      - dependency-name: '@types/node'
+        update-types:
+          - version-update:semver-major
+    groups:
+      compatible-updates:
+        update-types:
+          - minor
+          - patch
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '09:00'
+      timezone: Asia/Taipei
+    open-pull-requests-limit: 3
