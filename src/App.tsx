@@ -1,7 +1,9 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import RouteMeta from "./components/RouteMeta";
 import ScrollManager from "./components/ScrollManager";
+import { redactAnalyticsUrl } from "./lib/analytics";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -28,6 +30,7 @@ const App = () => (
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
+    {import.meta.env.PROD && <Analytics beforeSend={redactAnalyticsUrl} />}
   </BrowserRouter>
 );
 
